@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { client, urlFor } from "../../../lib/sanity";
+import { PortableText } from "@portabletext/react";
 
 async function getData(slug) {
   const query = `*[_type == 'post' && slug.current == "${slug}"] {
@@ -31,7 +32,12 @@ async function BlogArticle({ params }) {
         width={800}
         height={800}
         alt="title image"
+        priority
+        className="rounded-lg mt-8"
       />
+      <div className="mt-16 prose prose-xl text-white prose-a:text-primary">
+        <PortableText value={data.body} />
+      </div>
     </div>
   );
 }
