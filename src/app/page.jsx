@@ -3,6 +3,7 @@ import Image from "next/image";
 // import { groq } from "next-sanity";
 // import { client } from "../../lib/createClient";
 import Events from "../components/events/Events";
+import BlogList from "../components/BlogList";
 
 // const queryEvent = groq`*[_type == 'event'] {
 //   name,
@@ -51,6 +52,7 @@ export default async function Home() {
   return (
     <main>
       <Events />
+      <BlogList />
     </main>
   );
 }
