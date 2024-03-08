@@ -2,6 +2,8 @@ import Image from "next/image";
 import { client, urlFor } from "../../../lib/sanity";
 import { PortableText } from "@portabletext/react";
 
+export const revalidate = 30;
+
 async function getData(slug) {
   const query = `*[_type == 'post' && slug.current == "${slug}"] {
     "currentSlug": slug.current,
@@ -21,22 +23,20 @@ async function BlogArticle({ params }) {
   const data = await getData(params.slug);
   console.log(data);
   return (
-    <div>
-      <h1>
-        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
-          {data.title}
-        </span>
-      </h1>
-      <Image
-        src={urlFor(data.mainImage).url()}
-        width={800}
-        height={800}
-        alt="title image"
-        priority
-        className="rounded-lg mt-8"
-      />
-      <div className="mt-16 prose prose-xl text-white prose-a:text-primary">
-        <PortableText value={data.body} />
+    <div className="min-w-full mx-auto">
+      <h1 className="text-3xl font-bold text-center mt-8">{data.title}</h1>
+      <div className="w-full mx-auto mt-8">
+        <Image
+          src={urlFor(data.mainImage).url()}
+          width={800}
+          height={800}
+          alt="title image"
+          priority
+          className="rounded-lg mt-8 block mx-auto"
+        />
+      </div>
+      <div className="mt-8 mx-auto prose prose-headings:text-white prose-lg text-white prose-a:text-yellow-200">
+        <PortableText value={data.body} onMissingComponent={false} />
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { client } from "../lib/sanity";
 import React from "react";
 
+export const revalidate = 30;
+
 async function getPosts() {
   const query = `*[_type == 'post'] | order(_createdAt desc) {
         title, 

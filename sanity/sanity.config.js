@@ -6,10 +6,11 @@ import {media} from 'sanity-plugin-media'
 
 export default defineConfig({
   name: 'default',
-  title: 'artist-site-two',
+  title: 'artist-site',
 
   projectId: '4hglk3si',
-  dataset: 'artist-site-march',
+  // dataset: 'artist-site-march',
+  dataset: 'production',
 
   plugins: [structureTool(), visionTool(), media()],
 
